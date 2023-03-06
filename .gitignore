@@ -15,6 +15,6 @@
 .DS_Store
 
 #files
-README
+README/
 
-README.md
+*.md
