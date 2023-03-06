@@ -11,4 +11,130 @@
 }
 body{
     font-family: 'Rubik', sans-serif;
+    /* background-color: black; */
+}
+.container{
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 1200px;
+}
+/* nav menu */
+.nav{
+    height: 70px;
+    /* flexbox option */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* grid option */
+    /* display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-template-areas: "logo icono";
+    align-items: center; */
+    /* dividimos toda la grid. Los elemento se pongan en las esquinas */
+    /* justify-content: space-between; */
+}
+.nav__input{
+    /* no se va a mostrar pero ara el efectos */
+    display: none;
+}
+.nav__toggle{
+    /* asigno el grid-area */
+    /* grid-area: icono; */
+    /* al ser un elemento en línea. Cuando se convierte en grid ya no se necesita el display: block */
+    /* display: block; */
+    width: 30px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/icon-hamburger.svg');
+    z-index: 10;
+    /* al pasar el mouse muestre el cursor */
+    cursor: pointer;
+}
+.nav__figure{
+    /* put logo to the right */
+    order: -1;
+    /* grid-area: logo; */
+    display: grid;
+    grid-template-areas: img;
+    z-index: 10;
+    --logo-hidden: 0;
+    --logo-show: 1;
+}
+/* start menu animation */
+.nav__input:checked + .nav__toggle{
+    background-image: url(../images/icon-close.svg);
+}
+/* al hacer checked en el input hacer cambios en los hermanos */
+.nav__input:checked ~ .nav__figure{
+    --logo-hidden: 1;
+    --logo-show: 0;
+}
+.nav__input:checked ~ .nav__content{
+    clip-path: circle(150% at top right);
+    opacity: 1;
+    transform: translateY(0);
+}
+/* end menu animation */
+.nav__logo{
+    grid-area: img;
+    opacity: var(--logo-show);
+}
+.nav__logo--hidden{
+    opacity: var(--logo-hidden);
+}
+.nav__content{
+    --opacity: 0;
+    --transition: opacity .3s .7s;
+    background-color: hsl(229, 31%, 21%, .8);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    /* shorthand b,l,t,r ocupa todo el viewport el background ocupa toda la página y el menu se vera siempre */
+    inset: 0;
+    clip-path: circle(0% at 100% 0);
+    /* circle effect */
+    transition: clip-path .8s;
+}
+.nav__list{
+    padding: 0;
+    list-style: none;
+}
+.nav__item{
+    border-top: 2px solid var(--grayish-blue);
+    padding: 20px 0;
+    text-align: center;
+}
+.nav__link{
+    color: #fff;
+    text-decoration: none;
+    /* pasamos los textos a mayusculas */
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.nav__link--last{
+    display: block;
+    border: 3px solid #fff;
+    border-radius: 5px;
+    padding: 1em 0;
+}
+.nav__media{
+    opacity: var(--opacity);
+    transition: var(--transition);
+    /* propiedad para enviarlos a la parte inferior */
+    /* flex */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    /* grid */
+    /* margin-top: auto;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content; */
+    
 }

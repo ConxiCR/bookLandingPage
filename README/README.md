@@ -1,3 +1,58 @@
+1. en el html enlazamod los estilos css
+2. Bajamos la fuente google fonts que nos pide el challenge. Copiamos el codigo en la     etiqueta head y ponenemos los estilos en el css
+3. creamos el menu. Cuando le damos click al elemento el logo cambia a color blanco y añade una x.
+4. Para crear el efecto de cambio de color del logo creamos otra imagen renombrando la que teniamos y cambiando el fill por el color blanco.
+         1. <figure class="nav__figure">
+              <img src="./images/logo-bookmark.svg" alt="logo-bookmark" class="nav__logo">
+              <img src="./images/logo-bookmark-white.svg" alt="logo-bookmark-white" class="nav__logo--hidden">
+            </figure>
+5. creamos un label con class toggle para que cada vez toque aparezca o desaparezca el menu. Creamos un input para hacer el efecto de marcar y desmarcar.
+6. conecto el label con el input mediante un id en el input y un for en el label. Para que cuando le den click aparezca o desaparezca el menu.
+7. Creación el menu de navegación mediante lista ul/li
+8. Creacion de las custom properties
+9. Iconos media. Utilizando grid y gap para dar espacio entre iconos
+            1.  .nav__media{
+                    /* propiedad para enviarlos a la parte inferior */
+                    margin-top: auto;
+                    display: grid;
+                    grid-auto-flow: column;
+                    grid-auto-columns: max-content;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 3em;
+                }
+10. Como hacer funcionar el menú a mostrar. Con [clip-path](https://bennettfeely.com/clippy/)
+    ~~
+    clip-path: circle(8.6% at 100% 0);
+
+    .nav__figure{
+    display: grid;
+    grid-area: logo;
+    grid-template-areas: img;
+    --logo-hidden: 0;
+    --logo-show: 1;
+    }
+    /* al hacer checked en el input hacer cambios en los hermanos */
+    .nav__input:checked + .nav__figure{
+        --logo-hidden: 1;
+        --logo-show: 0;
+    }
+    .nav__logo{
+        grid-area: img;
+        opacity: var(--logo-show);
+    }
+    .nav__logo.hidden{
+        opacity: var(--logo-hidden);
+    }
+
+explicacion de los apartados:
+
+.nav 
+utilizo grid creando dos columnas que tengan el mismo contenido
+
+
+
+
 # Frontend Mentor - Bookmark landing page
 
 ![Design preview for the Bookmark landing page coding challenge](./design/desktop-preview.jpg)
